@@ -2,13 +2,13 @@
 use App\Http\Controllers\StripePaymentController;
 use Illuminate\Http\Request;
 
-Route::get('/checkout', function () {
-    return view('checkout.index');
-});
+Route::get('/checkout/{id}', function ($id) {
+    return view('checkout.index', compact('id'));
+})->name('checkout');
 
 Route::get('/', function () {
     return view('home.index');
-});
+})->name('home');;
 
 Route::prefix('stripe-checkout')
     ->name('stripe-checkout.')

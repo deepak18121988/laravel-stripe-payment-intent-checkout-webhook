@@ -3,7 +3,7 @@
 
   <!--Call to action-->
   <div class="pt-4">
-    <a class="btn btn-outline-white" href="/checkout" role="button">
+    <a class="btn btn-outline-white" href="{{ route('checkout', 1) }}" role="button">
       Try Payment Demo
       <i class="fas fa-credit-card ml-2"></i>
     </a>

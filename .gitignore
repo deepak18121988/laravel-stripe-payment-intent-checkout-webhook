@@ -1,18 +1,62 @@
+# =========================
+# Laravel Core
+# =========================
+/vendor
 /node_modules
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Laravel Storage
+# =========================
+/storage/app/*
+!/storage/app/public
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/storage/*.key
+
+# =========================
+# Public build files
+# =========================
 /public/build
 /public/hot
 /public/storage
-/storage/*.key
-/vendor
-.env
-.env.backup
-.env.production
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log
+yarn-error.log
+
+# =========================
+# Cache / Testing
+# =========================
 .phpunit.result.cache
+
+# =========================
+# IDE / Editor
+# =========================
+/.idea
+/.vscode
+/.fleet
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Laravel Forge / Envoy / Misc
+# =========================
 Homestead.json
 Homestead.yaml
 auth.json
-npm-debug.log
-yarn-error.log
-/.fleet
-/.idea
-/.vscode
