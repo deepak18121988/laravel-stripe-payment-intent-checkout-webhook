@@ -75,7 +75,9 @@ git clone https://github.com/deepak18121988/laravel-stripe-payment-intent-checko
 ### 2. Install Dependencies
 
 composer install
+
 OR 
+
 composer update
 
 ---
@@ -85,7 +87,9 @@ composer update
 Create `.env` file and add:
 
 STRIPE_KEY=your_stripe_publishable_key
+
 STRIPE_SECRET=your_stripe_secret_key
+
 STRIPE_WEBHOOK_SECRET=your_webhook_secret
 
 APP_URL=http://localhost:8000
@@ -109,10 +113,15 @@ To properly run this project, you need to setup the database along with required
 Update your `.env` file:
 
 DB_CONNECTION=mysql
+
 DB_HOST=127.0.0.1
+
 DB_PORT=3306
+
 DB_DATABASE=your_database_name
+
 DB_USERNAME=root
+
 DB_PASSWORD=
 
 ---
