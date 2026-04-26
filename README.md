@@ -98,9 +98,94 @@ php artisan key:generate
 
 ---
 
-### 5. Database Setup
+### 5. Database Setup (Important)
+
+To properly run this project, you need to setup the database along with required default data.
+
+---
+
+### A. Configure Database
+
+Update your `.env` file:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=root
+DB_PASSWORD=
+
+---
+
+### B. Run Migrations
+
+This will create all required tables:
 
 php artisan migrate
+
+---
+
+### C. Seed Default Data
+
+This project requires some default data like:
+
+* Payment Statuses (Pending, Completed, Failed, etc.)
+* PSP Vendor (Stripe)
+* Supported Payment Methods
+
+Run the following command:
+
+php artisan db:seed
+
+---
+
+### D. Fresh Setup (Recommended)
+
+If you are setting up the project for the first time, run:
+
+php artisan migrate:fresh --seed
+
+This will:
+
+* Drop all tables
+* Recreate tables
+* Insert required default data
+
+---
+
+### E. Verify Database
+
+After seeding, check these tables:
+
+* payment_statuses ✅
+* psp_vendors ✅
+* psp_supported_payment_methods ✅
+
+These are required for payment flow to work correctly.
+
+---
+
+### ⚠️ Important Notes
+
+* Do NOT skip seeding — payment flow depends on it
+* Make sure `.env` database credentials are correct
+* If you face any seeder error, run:
+
+composer dump-autoload
+
+---
+
+### 🧪 Quick Check
+
+If everything is working:
+
+* Checkout page loads
+* PaymentIntent creates successfully
+* Payment status updates in DB after webhook
+
+---
+
+Now your database is fully ready for Stripe payment flow 🚀
 
 ---
 
