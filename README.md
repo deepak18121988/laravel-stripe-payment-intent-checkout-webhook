@@ -10,60 +10,22 @@ This project demonstrates a **production-level payment flow** using Stripe Payme
 
 * Stripe PaymentIntent integration
 * Stripe Elements (Card, Email, Billing Address)
-* Custom checkout form (no Stripe hosted page)
-* Frontend validation (JavaScript)
-* Backend validation (Laravel)
+* Custom checkout (no Stripe hosted page)
+* Frontend + Backend validation
 * Webhook handling (success, failure, updates)
-* Secure payment processing flow
-* Success & failure handling
-* Clean and structured architecture
+* Secure payment flow
+* Clean architecture
 
 ---
 
 ## 🎯 Why This Project?
 
-This project demonstrates how to build a **production-ready Stripe integration** instead of using basic hosted checkout.
-
-It focuses on:
+This project shows how to build a **real-world Stripe integration** with:
 
 * Full control over UI/UX
 * Secure backend validation
-* Webhook-driven payment updates
-* Real-world architecture
-
----
-
-## 🔄 Payment Flow (Step-by-Step)
-
-1. User opens checkout page
-2. Laravel creates PaymentIntent via API
-3. Client receives `client_secret`
-4. Stripe Elements render:
-
-   * Card input
-   * Email (Link Authentication)
-   * Billing Address
-5. User fills details
-6. Frontend validation (JavaScript)
-7. Backend validation (Laravel)
-8. Stripe `confirmPayment` triggered
-9. 3D Secure (if required)
-10. Webhook updates payment status in database
-11. User redirected to:
-
-* Success page
-* Failure page
-
----
-
-## 🧠 Real-world Concepts Covered
-
-* PaymentIntent lifecycle handling
-* Secure payment confirmation
-* Webhook signature verification
-* Handling asynchronous payments
-* Error handling & validation
-* Preventing invalid transactions
+* Webhook-based payment confirmation
+* Production-level structure
 
 ---
 
@@ -73,13 +35,13 @@ It focuses on:
 * Stripe API
 * Stripe JS (v3)
 * Blade Templates
-* JavaScript (Vanilla)
+* JavaScript
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation
 
-### 1. Clone Repository
+### 1. Clone Repo
 
 ```bash
 git clone https://github.com/deepak18121988/laravel-stripe-payment-intent-checkout-webhook
@@ -92,12 +54,6 @@ cd laravel-stripe-payment-intent-checkout-webhook
 
 ```bash
 composer install
-```
-
-OR
-
-```bash
-composer update
 ```
 
 ---
@@ -113,14 +69,14 @@ Update `.env`:
 ```
 APP_URL=http://localhost:8000
 
-STRIPE_KEY=your_stripe_publishable_key
-STRIPE_SECRET=your_stripe_secret_key
-STRIPE_WEBHOOK_SECRET=your_webhook_secret
+STRIPE_KEY=
+STRIPE_SECRET=
+STRIPE_WEBHOOK_SECRET=
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=your_database_name
+DB_DATABASE=
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -135,50 +91,20 @@ php artisan key:generate
 
 ---
 
-## 🗄 Database Setup (Important)
-
-### Run Migration + Seeder
+## 🗄 Database Setup
 
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-This will:
-
-* Create all tables
-* Insert required default data
-
----
-
-### Required Tables
-
-* payment_statuses
-* psp_vendors
-* psp_supported_payment_methods
-
----
-
-### ⚠️ Notes
-
-* Do NOT skip seeding — payment flow depends on it
-* If seeder fails, run:
-
-```bash
-composer dump-autoload
-```
+✔ Creates tables
+✔ Inserts required data
 
 ---
 
 ## 💳 Stripe Setup
 
-1. Create account on Stripe
-2. Get API keys from dashboard
-3. Add keys in `.env`
-4. Setup webhook endpoint
-
----
-
-### 🔗 Webhook Endpoint
+### Webhook Endpoint
 
 ```
 POST /api/psp/webhooks/stripe
@@ -186,16 +112,10 @@ POST /api/psp/webhooks/stripe
 
 ---
 
-## 🔔 Webhook Configuration
+### Run Webhook Listener
 
 ```bash
 stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
-```
-
-Copy the webhook signing secret and add it to `.env`:
-
-```
-STRIPE_WEBHOOK_SECRET=your_webhook_secret
 ```
 
 ---
@@ -206,7 +126,7 @@ STRIPE_WEBHOOK_SECRET=your_webhook_secret
 php artisan serve
 ```
 
-Open in browser:
+Open:
 
 ```
 http://localhost:8000
@@ -214,23 +134,20 @@ http://localhost:8000
 
 ---
 
-## 🧪 Test Cards
-
-Use Stripe test card:
+## 🧪 Test Card
 
 ```
-Card Number: 4242 4242 4242 4242
-Expiry: Any future date
-CVC: Any 3 digits
+4242 4242 4242 4242
+Any future date | Any CVC
 ```
 
 ---
 
-## 🌍 Payment Flow Testing
+## 🔐 Security
 
-* Successful payment → success page
-* Failed payment → failure page
-* Webhook updates DB automatically
+* Webhook signature verification enabled
+* Payment confirmed via webhook (not frontend)
+* Sensitive keys stored in `.env`
 
 ---
 
@@ -249,23 +166,26 @@ routes/
 
 ## 📸 Screenshots
 
-*Add your screenshots here*
 
-Example:
+| Checkout | Payment Process | Success | Failure |
+|----------|--------|--------|--------|
+| ![Checkout](screenshots/checkout.png) | ![Payment Process](screenshots/payment_process.png) | ![Success](screenshots/payment_success.png) | ![Failure](screenshots/payment_fail.png) |
+
+
+---
+
+## 🌐 API
 
 ```
-screenshots/checkout.png
-screenshots/payment.png
-screenshots/success.png
+POST /api/psp/webhooks/stripe
 ```
 
 ---
 
-## ⚠️ Important Note
+## ⚠️ Notes
 
-This implementation reflects real-world payment systems used in production applications.
-
-No private or proprietary client code is included.
+* Do not skip database seeding
+* Run `composer dump-autoload` if error occurs
 
 ---
 
@@ -274,7 +194,7 @@ No private or proprietary client code is included.
 **Deepak Lohani**
 Laravel Developer | Payment Integration Specialist
 
-🔗 GitHub: https://github.com/deepak18121988
+GitHub: https://github.com/deepak18121988
 
 ---
 
