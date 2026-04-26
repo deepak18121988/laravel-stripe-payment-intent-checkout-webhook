@@ -1,8 +1,27 @@
-# Laravel Stripe PaymentIntent Checkout
+# 💳 Laravel Stripe PaymentIntent Checkout (Production Ready)
 
 A complete real-world Stripe payment integration built with Laravel.
 
 This project demonstrates a **production-level payment flow** using Stripe PaymentIntent, Stripe Elements, and Webhooks with proper validation and error handling.
+
+---
+
+## 🌐 Live Demo
+
+Coming Soon...
+
+*(You can run locally using the steps below)*
+
+---
+
+## 👤 Who Is This For?
+
+This project is useful for:
+
+* Businesses wanting to accept online payments
+* Developers learning Stripe integration
+* Startups building custom checkout systems
+* Anyone needing secure payment processing
 
 ---
 
@@ -26,22 +45,26 @@ This project shows how to build a **real-world Stripe integration** with:
 * Secure backend validation
 * Webhook-based payment confirmation
 * Production-level structure
+* Accepts online payments using Stripe
+* Handles payment success & failure securely
 
 ---
 
-## 🛠 Tech Stack
+## 📦 What You Need Before Starting
 
-* Laravel
-* Stripe API
-* Stripe JS (v3)
-* Blade Templates
-* JavaScript
+Make sure you have:
+
+* PHP (>= 8.1)
+* Composer
+* MySQL
+* Git
+* Stripe Account (Free)
 
 ---
 
 ## ⚙️ Installation
 
-### 1. Clone Repo
+### Step 1: Clone Repo
 
 ```bash
 git clone https://github.com/deepak18121988/laravel-stripe-payment-intent-checkout-webhook
@@ -50,7 +73,7 @@ cd laravel-stripe-payment-intent-checkout-webhook
 
 ---
 
-### 2. Install Dependencies
+### Step 2: Install Dependencies
 
 ```bash
 composer install
@@ -58,40 +81,100 @@ composer install
 
 ---
 
-### 3. Setup Environment
+## ⚙️ Step 3: Setup Environment File
+
+You need to create a `.env` file from the example file.
+
+👉 This file stores your project configuration (important)
+
+### Option 1 (Command)
 
 ```bash
 cp .env.example .env
 ```
+
+### Option 2 (Manual - Beginner Friendly)
+
+1. Find `.env.example` file
+2. Copy it
+3. Paste in same folder
+4. Rename to:
+
+```
+.env
+```
+
+---
+
+## 🔑 Step 4: 💳 Add Stripe Keys (IMPORTANT)
+
+### 👉 How to get Stripe Keys:
+
+1. Go to: https://dashboard.stripe.com/register
+2. Login to your Stripe account
+3. Click on **Developers → API Keys**
+
+You will see:
+
+* Publishable Key
+* Secret Key
+
+---
+
+### 👉 Add keys in `.env` file:
+
+```
+STRIPE_KEY=your_publishable_key_here
+STRIPE_SECRET=your_secret_key_here
+STRIPE_WEBHOOK_SECRET=
+```
+
+---
+
+## 🔐 Step 5: Setup Webhook (VERY IMPORTANT)
+
+### Run this command:
+
+```bash
+stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
+```
+
+👉 After running, you will get something like:
+
+```
+whsec_123456789
+```
+
+⚠️ Keep this terminal running while testing payments
+
+---
+
+### 👉 Copy and paste into `.env`:
+
+```
+STRIPE_WEBHOOK_SECRET=whsec_123456789
+```
+
+---
+
+## 🗄 Step 6: Setup Database
 
 Update `.env`:
 
 ```
 APP_URL=http://localhost:8000
 
-STRIPE_KEY=
-STRIPE_SECRET=
-STRIPE_WEBHOOK_SECRET=
-
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=
+DB_DATABASE=your_database_name
 DB_USERNAME=root
 DB_PASSWORD=
 ```
 
 ---
 
-### 4. Generate App Key
-
-```bash
-php artisan key:generate
-```
-
----
-
-## 🗄 Database Setup
+### Step 7: Run Database Migration
 
 ```bash
 php artisan migrate:fresh --seed
@@ -102,31 +185,23 @@ php artisan migrate:fresh --seed
 
 ---
 
-## 💳 Stripe Setup
-
-### Webhook Endpoint
-
-```
-POST /api/psp/webhooks/stripe
-```
-
----
-
-### Run Webhook Listener
+## 🔑 Step 8: Generate App Key
 
 ```bash
-stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
+php artisan key:generate
 ```
 
 ---
 
-## ▶️ Run Project
+## ▶️ Step 9: Run Project
 
 ```bash
 php artisan serve
 ```
 
-Open:
+---
+
+## 🌐 Open Website
 
 ```
 http://localhost:8000
@@ -134,20 +209,35 @@ http://localhost:8000
 
 ---
 
-## 🧪 Test Card
+## 🧪 Test Payment Details
+
+Use this test card:
 
 ```
-4242 4242 4242 4242
-Any future date | Any CVC
+Card Number: 4242 4242 4242 4242  
+Expiry: Any future date  
+CVC: Any 3 digits  
 ```
+
+👉 No real money will be charged
 
 ---
 
-## 🔐 Security
+## ✅ Payment Flow (Simple Explanation)
 
-* Webhook signature verification enabled
-* Payment confirmed via webhook (not frontend)
-* Sensitive keys stored in `.env`
+1. User enters card details
+2. Payment is sent to Stripe
+3. Stripe verifies payment
+4. Webhook confirms payment
+5. Success / Failure page shown
+
+---
+
+## 🔒 Security Notes
+
+* Payment is confirmed using webhook (safe method)
+* Keys are stored securely in `.env`
+* Never share your Secret Key publicly
 
 ---
 
@@ -166,11 +256,9 @@ routes/
 
 ## 📸 Screenshots
 
-
-| Checkout | Payment Process | Success | Failure |
-|----------|--------|--------|--------|
-| ![Checkout](screenshots/checkout.png) | ![Payment Process](screenshots/payment_process.png) | ![Success](screenshots/payment_success.png) | ![Failure](screenshots/payment_fail.png) |
-
+| Checkout                              | Payment Process                             | Success                                     | Failure                                  |
+| ------------------------------------- | ------------------------------------------- | ------------------------------------------- | ---------------------------------------- |
+| ![Checkout](screenshots/checkout.png) | ![Payment](screenshots/payment_process.png) | ![Success](screenshots/payment_success.png) | ![Failure](screenshots/payment_fail.png) |
 
 ---
 
@@ -182,10 +270,35 @@ POST /api/psp/webhooks/stripe
 
 ---
 
-## ⚠️ Notes
+## ⚠️ Common Issues & Fix
 
-* Do not skip database seeding
-* Run `composer dump-autoload` if error occurs
+### If project not working:
+
+```bash
+composer dump-autoload
+```
+
+---
+
+### If webhook not working:
+
+Make sure this command is running:
+
+```bash
+stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
+```
+
+---
+
+## 💼 Need Help?
+
+If you need help with:
+
+* Stripe Integration
+* Payment Gateway Setup
+* Laravel Development
+
+Feel free to contact me.
 
 ---
 
@@ -200,4 +313,4 @@ GitHub: https://github.com/deepak18121988
 
 ## ⭐ Support
 
-If you find this useful, give it a ⭐ on GitHub!
+If this project helped you, please give it a ⭐ on GitHub!
