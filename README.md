@@ -8,9 +8,9 @@ This project demonstrates a **production-level payment flow** using Stripe Payme
 
 ## 🌐 Live Demo
 
-Coming Soon...
+🚧 Live demo coming soon
 
-*(You can run locally using the steps below)*
+👉 You can run the project locally using the steps below
 
 ---
 
@@ -45,8 +45,16 @@ This project shows how to build a **real-world Stripe integration** with:
 * Secure backend validation
 * Webhook-based payment confirmation
 * Production-level structure
-* Accepts online payments using Stripe
-* Handles payment success & failure securely
+
+---
+
+## 🧠 Key Concepts Used
+
+- PaymentIntent lifecycle  
+- Secure webhook signature validation  
+- Backend payment confirmation (not frontend)  
+- Error handling for failed payments  
+- Clean separation of frontend and backend logic  
 
 ---
 
@@ -62,7 +70,9 @@ Make sure you have:
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation 
+
+👉 Make sure Composer is installed globally on your system
 
 ### Step 1: Clone Repo
 
@@ -119,6 +129,8 @@ You will see:
 * Publishable Key
 * Secret Key
 
+👉 Make sure you are using TEST mode keys (not live keys)
+
 ---
 
 ### 👉 Add keys in `.env` file:
@@ -139,13 +151,13 @@ STRIPE_WEBHOOK_SECRET=
 stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
 ```
 
+⚠️ Keep this terminal running while testing payments
+
 👉 After running, you will get something like:
 
 ```
 whsec_123456789
 ```
-
-⚠️ Keep this terminal running while testing payments
 
 ---
 
@@ -254,11 +266,21 @@ routes/
 
 ---
 
+## 🧪 Tested With
+
+- Stripe Test Mode  
+- PaymentIntent API  
+- Webhook Events:
+  - payment_intent.succeeded  
+  - payment_intent.payment_failed  
+
+---
+
 ## 📸 Screenshots
 
 | Checkout                              | Payment Process                             | Success                                     | Failure                                  |
 | ------------------------------------- | ------------------------------------------- | ------------------------------------------- | ---------------------------------------- |
-| ![Checkout](screenshots/checkout.png) | ![Payment](screenshots/payment_process.png) | ![Success](screenshots/payment_success.png) | ![Failure](screenshots/payment_fail.png) |
+| ![Checkout](./screenshots/checkout.png) | ![Payment](./screenshots/payment_process.png) | ![Success](./screenshots/payment_success.png) | ![Failure](./screenshots/payment_fail.png) |
 
 ---
 
@@ -307,7 +329,9 @@ Feel free to contact me.
 **Deepak Lohani**
 Laravel Developer | Payment Integration Specialist
 
-GitHub: https://github.com/deepak18121988
+🌐 GitHub: https://github.com/deepak18121988  
+
+💼 Available for freelance work
 
 ---
 
