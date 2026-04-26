@@ -206,7 +206,7 @@ http://localhost:8000/stripe/webhook
 
 Install Stripe CLI and run:
 
-stripe listen --forward-to localhost:8000/stripe/webhook
+stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
 
 Copy the webhook signing secret and add it to `.env`:
 

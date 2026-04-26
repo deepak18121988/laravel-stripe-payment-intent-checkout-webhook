@@ -77,7 +77,7 @@ Route::prefix('stripe-checkout')
          * Displays when payment status is pending.
          */
         Route::get('/pending', function () {
-            return view('payments.pending');
+            return view('stripe-checkout.pending');
         })->name('pending');
 
         /**
