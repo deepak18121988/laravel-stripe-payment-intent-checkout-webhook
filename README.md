@@ -2,7 +2,7 @@
 
 A complete real-world Stripe payment integration built with Laravel.
 
-This project demonstrates a full production-level payment flow using Stripe PaymentIntent, Stripe Elements, and Webhooks with proper validation and error handling.
+This project demonstrates a **production-level payment flow** using Stripe PaymentIntent, Stripe Elements, and Webhooks with proper validation and error handling.
 
 ---
 
@@ -10,13 +10,26 @@ This project demonstrates a full production-level payment flow using Stripe Paym
 
 * Stripe PaymentIntent integration
 * Stripe Elements (Card, Email, Billing Address)
-* Custom checkout form (not Stripe hosted page)
+* Custom checkout form (no Stripe hosted page)
 * Frontend validation (JavaScript)
 * Backend validation (Laravel)
-* Webhook handling (payment success, failure, updates)
-* Payment processing flow
-* Success & failure pages
-* Clean and structured code
+* Webhook handling (success, failure, updates)
+* Secure payment processing flow
+* Success & failure handling
+* Clean and structured architecture
+
+---
+
+## 🎯 Why This Project?
+
+This project demonstrates how to build a **production-ready Stripe integration** instead of using basic hosted checkout.
+
+It focuses on:
+
+* Full control over UI/UX
+* Secure backend validation
+* Webhook-driven payment updates
+* Real-world architecture
 
 ---
 
@@ -32,9 +45,9 @@ This project demonstrates a full production-level payment flow using Stripe Paym
    * Billing Address
 5. User fills details
 6. Frontend validation (JavaScript)
-7. Backend validation (Laravel API)
+7. Backend validation (Laravel)
 8. Stripe `confirmPayment` triggered
-9. If required → 3D Secure authentication
+9. 3D Secure (if required)
 10. Webhook updates payment status in database
 11. User redirected to:
 
@@ -64,49 +77,45 @@ This project demonstrates a full production-level payment flow using Stripe Paym
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ Installation & Setup
 
 ### 1. Clone Repository
 
+```bash
 git clone https://github.com/deepak18121988/laravel-stripe-payment-intent-checkout-webhook
+cd laravel-stripe-payment-intent-checkout-webhook
+```
 
 ---
 
 ### 2. Install Dependencies
 
+```bash
 composer install
-OR 
+```
+
+OR
+
+```bash
 composer update
+```
 
 ---
 
 ### 3. Setup Environment
 
-Create `.env` file and add:
+```bash
+cp .env.example .env
+```
+
+Update `.env`:
+
+```
+APP_URL=http://localhost:8000
 
 STRIPE_KEY=your_stripe_publishable_key
 STRIPE_SECRET=your_stripe_secret_key
 STRIPE_WEBHOOK_SECRET=your_webhook_secret
-
-APP_URL=http://localhost:8000
-
----
-
-### 4. Generate App Key
-
-php artisan key:generate
-
----
-
-### 5. Database Setup (Important)
-
-To properly run this project, you need to setup the database along with required default data.
-
----
-
-### A. Configure Database
-
-Update your `.env` file:
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -114,113 +123,94 @@ DB_PORT=3306
 DB_DATABASE=your_database_name
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
 ---
 
-### B. Run Migrations
+### 4. Generate App Key
 
-This will create all required tables:
-
-php artisan migrate
-
----
-
-### C. Seed Default Data
-
-This project requires some default data like:
-
-* Payment Statuses (Pending, Completed, Failed, etc.)
-* PSP Vendor (Stripe)
-* Supported Payment Methods
-
-Run the following command:
-
-php artisan db:seed
+```bash
+php artisan key:generate
+```
 
 ---
 
-### D. Fresh Setup (Recommended)
+## 🗄 Database Setup (Important)
 
-If you are setting up the project for the first time, run:
+### Run Migration + Seeder
 
+```bash
 php artisan migrate:fresh --seed
+```
 
 This will:
 
-* Drop all tables
-* Recreate tables
+* Create all tables
 * Insert required default data
 
 ---
 
-### E. Verify Database
+### Required Tables
 
-After seeding, check these tables:
-
-* payment_statuses ✅
-* psp_vendors ✅
-* psp_supported_payment_methods ✅
-
-These are required for payment flow to work correctly.
+* payment_statuses
+* psp_vendors
+* psp_supported_payment_methods
 
 ---
 
-### ⚠️ Important Notes
+### ⚠️ Notes
 
 * Do NOT skip seeding — payment flow depends on it
-* Make sure `.env` database credentials are correct
-* If you face any seeder error, run:
+* If seeder fails, run:
 
+```bash
 composer dump-autoload
-
----
-
-### 🧪 Quick Check
-
-If everything is working:
-
-* Checkout page loads
-* PaymentIntent creates successfully
-* Payment status updates in DB after webhook
-
----
-
-Now your database is fully ready for Stripe payment flow 🚀
+```
 
 ---
 
 ## 💳 Stripe Setup
 
 1. Create account on Stripe
-2. Get API keys from Stripe Dashboard
-3. Add keys in `.env` file
+2. Get API keys from dashboard
+3. Add keys in `.env`
 4. Setup webhook endpoint
 
-Example webhook URL:
+---
 
-http://localhost:8000/stripe/webhook
+### 🔗 Webhook Endpoint
+
+```
+POST /api/psp/webhooks/stripe
+```
 
 ---
 
 ## 🔔 Webhook Configuration
 
-Install Stripe CLI and run:
-
+```bash
 stripe listen --forward-to localhost:8000/api/psp/webhooks/stripe
+```
 
 Copy the webhook signing secret and add it to `.env`:
 
+```
 STRIPE_WEBHOOK_SECRET=your_webhook_secret
+```
 
 ---
 
 ## ▶️ Run Project
 
+```bash
 php artisan serve
+```
 
 Open in browser:
 
+```
 http://localhost:8000
+```
 
 ---
 
@@ -228,46 +218,66 @@ http://localhost:8000
 
 Use Stripe test card:
 
+```
 Card Number: 4242 4242 4242 4242
 Expiry: Any future date
 CVC: Any 3 digits
+```
 
 ---
 
 ## 🌍 Payment Flow Testing
 
-* Successful payment → redirected to success page
-* Failed payment → redirected to failure page
-* Webhook updates payment status in database
+* Successful payment → success page
+* Failed payment → failure page
+* Webhook updates DB automatically
+
+---
+
+## 📁 Project Structure
+
+```
+app/
+database/
+ ├── migrations/
+ ├── seeders/
+resources/views/
+routes/
+```
 
 ---
 
 ## 📸 Screenshots
 
-(Add screenshots here)
+*Add your screenshots here*
 
-* Checkout Page
-* Payment Form
-* Success Page
-* Error Handling
+Example:
+
+```
+screenshots/checkout.png
+screenshots/payment.png
+screenshots/success.png
+```
 
 ---
 
 ## ⚠️ Important Note
 
-This project is inspired by real-world client implementations involving Stripe payment systems, without exposing any private or proprietary source code.
+This implementation reflects real-world payment systems used in production applications.
+
+No private or proprietary client code is included.
 
 ---
 
 ## 💼 Author
 
-Deepak Lohani
-Laravel Developer | Stripe Payment Specialist
+**Deepak Lohani**
+Laravel Developer | Payment Integration Specialist
 
-GitHub: https://github.com/deepak18121988
+🔗 GitHub: https://github.com/deepak18121988
 
 ---
 
-## ⭐ If you find this useful
+## ⭐ Support
 
-Give it a star ⭐ on GitHub — it helps others discover the project!
+If you find this useful, give it a ⭐ on GitHub!
