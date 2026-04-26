@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Collection|TransactionBookingResale[] $transaction_booking_resales
+ * @property Collection|BookingTransaction[] $transaction_booking_resales
  *
  * @package App\Models
  */
@@ -43,6 +43,6 @@ class PspVendor extends Model
 
 	public function transaction_booking_resales()
 	{
-		return $this->hasMany(TransactionBookingResale::class);
+		return $this->hasMany(BookingTransaction::class);
 	}
 }

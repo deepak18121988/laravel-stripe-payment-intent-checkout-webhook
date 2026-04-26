@@ -23,7 +23,7 @@
         </li>
 
         <li class="nav-item {{ request()->routeIs('checkout') ? 'active' : '' }}">
-          <a class="nav-link waves-effect" href="{{ route('checkout', 1) }}">
+          <a class="nav-link waves-effect" href="{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}">
             Checkout Demo
           </a>
         </li>
@@ -39,7 +39,7 @@
       <ul class="navbar-nav nav-flex-icons">
 
         <li class="nav-item">
-          <a class="nav-link waves-effect" href="{{ route('checkout', 1) }}">
+          <a class="nav-link waves-effect" href="{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}">
             <span class="badge green z-depth-1 mr-1"> Live </span>
             <i class="fas fa-credit-card"></i>
             <span class="clearfix d-none d-sm-inline-block"> Payment Demo </span>
@@ -54,7 +54,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{ route('checkout', 1) }}" class="nav-link border border-light rounded waves-effect">
+          <a href="{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}" class="nav-link border border-light rounded waves-effect">
             <i class="fas fa-bolt mr-2"></i>Try Demo
           </a>
         </li>

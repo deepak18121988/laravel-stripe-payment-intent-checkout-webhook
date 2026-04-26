@@ -3,7 +3,7 @@
 namespace App\Services\Payments;
 
 use App\Models\PspTransaction;
-use App\Models\TransactionBookingResale;
+use App\Models\BookingTransaction;
 use Illuminate\Support\Facades\Log;
 use App\Enums\PaymentStatus; 
 class PaymentReconciliationService
@@ -38,7 +38,7 @@ class PaymentReconciliationService
             ]);
         
         // Resolve business transaction
-        $transaction = TransactionBookingResale::find(
+        $transaction = BookingTransaction::find(
             $pspTransaction->transaction_id
         );
 
@@ -48,11 +48,6 @@ class PaymentReconciliationService
             ]);
             return;
         }
-
-        /*// Idempotency check
-        if ($transaction->payment_status_id === $paymentStatusId) {
-            return;
-        }*/
 
         if (
             $transaction->payment_status_id === PaymentStatus::COMPLETED->value &&

@@ -9,7 +9,7 @@ namespace App\Services\Payments;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\PaymentIntent;
-use App\Models\TransactionBookingResale;
+use App\Models\BookingTransaction;
 use App\Models\PspTransaction;
 use App\Models\PspSupportedPaymentMethod;
 use Illuminate\Support\Facades\Log;
@@ -29,9 +29,18 @@ class PaymentInitiationService
         string $currency
         //,string $flow
     ): array {
-        $transaction = TransactionBookingResale::findOrFail(
+
+        Log::warning('createStripePaymentIntent', [
+                'transactionId' => $transactionId
+            ]);
+
+        $transaction = BookingTransaction::findOrFail(
             $transactionId
         );
+
+        Log::warning('transaction', [
+                'transaction' => $transaction
+            ]);
 
         // Fetch enabled payment methods (configuration only)
         $paymentMethodTypes = PspSupportedPaymentMethod::where('enabled', 1)

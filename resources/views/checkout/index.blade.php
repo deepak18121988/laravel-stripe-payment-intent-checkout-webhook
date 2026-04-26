@@ -110,14 +110,14 @@
                 <h6 class="my-0">Product name</h6>
                 <small class="text-muted">Brief description</small>
               </div>
-              <span class="text-muted">$12</span>
+              <span class="text-muted">$80</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
                 <h6 class="my-0">Second product</h6>
                 <small class="text-muted">Brief description</small>
               </div>
-              <span class="text-muted">$8</span>
+              <span class="text-muted">$20</span>
             </li>
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
@@ -135,7 +135,7 @@
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
-              <strong>$20</strong>
+              <strong>$100</strong>
             </li>
           </ul>
           <!-- Cart -->
@@ -177,6 +177,14 @@
     let intent;
 
     try {
+
+        const transactionId = "{{ $data['transaction']->Transaction_ID }}";
+
+        // Convert to cents for Stripe
+        //const amount = "{{ $data['transaction']->Sale_Price }}";
+        const amount = Number("{{ $data['transaction']->Sale_Price }}");
+
+        const currency = 'eur';
         // Call Laravel API to create PaymentIntent
         const resp = await fetch("{{ route('stripe-checkout.create-intent') }}", {
             method: "POST",
@@ -187,12 +195,11 @@
                     .content
             },
             body: JSON.stringify({
-                transaction_id: 1, // Internal transaction ID
-                amount: 500,       // Amount in major units
-                currency: 'eur'
+                transaction_id: transactionId, // Internal transaction ID
+                amount: amount,       // Amount in major units
+                currency: currency
             })
         });
-
         // Parse response
         intent = await resp.json();
 

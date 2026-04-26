@@ -160,7 +160,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -203,7 +203,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -244,7 +244,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -287,7 +287,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -334,7 +334,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -377,7 +377,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -418,7 +418,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">
@@ -461,7 +461,7 @@
           <div class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" onclick="window.location='{{ route('checkout', 1) }}'" style="cursor:pointer;">
+            <div class="card" onclick="window.location='{{ route('checkout', '462950bb-5b7f-49ab-a741-eb95963a3c15') }}'" style="cursor:pointer;">
 
               <!--Card image-->
               <div class="view overlay">

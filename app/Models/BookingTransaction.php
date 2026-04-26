@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TransactionBookingResale
+ * Class BookingTransaction
  * 
  * @property int $Transaction_ID
  * @property int $Listing_ID
@@ -32,15 +32,15 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class TransactionBookingResale extends Model
+class BookingTransaction extends Model
 {
-	protected $table = 'transaction_booking_resales';
+	protected $table = 'booking_transactions';
 	protected $primaryKey = 'Transaction_ID';
 	public $timestamps = false;
 
 	protected $casts = [
 		'Listing_ID' => 'int',
-		'Buyer_ID' => 'binary',
+		'Buyer_ID' => 'string',
 		'Payment_ID' => 'int',
 		'Sale_Price' => 'float',
 		'App_Fee' => 'float',
@@ -61,33 +61,4 @@ class TransactionBookingResale extends Model
 		'psp_vendor_id'
 	];
 
-	public function listing()
-	{
-		return $this->belongsTo(Listing::class, 'Listing_ID');
-	}
-
-	public function user()
-	{
-		return $this->belongsTo(User::class, 'Buyer_ID', 'uuid');
-	}
-
-	public function payment_detail()
-	{
-		return $this->belongsTo(PaymentDetail::class, 'Payment_ID');
-	}
-
-	public function listings_ids_pool()
-	{
-		return $this->belongsTo(ListingsIdsPool::class, 'Purchase_Ref_Number');
-	}
-
-	public function payment_status()
-	{
-		return $this->belongsTo(PaymentStatus::class);
-	}
-
-	public function psp_vendor()
-	{
-		return $this->belongsTo(PspVendor::class);
-	}
 }
